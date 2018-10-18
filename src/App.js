@@ -134,7 +134,7 @@ class App extends Component {
                             <Tabs className='brk-tabs brk-tabs-parallax'>
                                 <TabList className='brk-tabs-nav'>
                                     <Tab className='brk-tab'>User Profiles</Tab>
-                                    <Tab className='brk-tab'>Favorite Movies</Tab>
+                                    <Tab className='brk-tab'>Movie Profiles</Tab>
                                 </TabList>
                                 <TabPanel className='brk-tab-item'>
                                     <ListUserProfiles profiles={profiles} users={users} movies={movies} usersByMovie={this.usersByMovie}/>
