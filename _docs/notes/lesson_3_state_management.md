@@ -90,6 +90,10 @@ function User(props) {
 }
 ```
 In functional components, props are not accessed using the `this` keyword.  Instead props are passed as an argument to the function.  
+
+**Template Literals**
+Template literals are string literals allowing embedded expressions. You can use multi-line strings and string interpolation features with them. They were called "template strings" in prior editions of the ES2015 specification. 
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMxNDk2ODk1M119
+eyJoaXN0b3J5IjpbLTEwNTQwNzI3NjIsLTMxNDk2ODk1M119
 -->
