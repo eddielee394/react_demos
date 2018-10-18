@@ -10,6 +10,12 @@ Course notes are written using standard markdown via [stackedit.io](https://stac
 
 ### Contact List App
 - **Project:** Build a contact  list app
+- **Branch** [lesson_3/contacts_app](https://github.com/eddielee394/udacity_react_excercises/tree/lesson_3/contacts_app) 
+![alt text](_docs/screenshots/screenshot_contacts_app.jpg "lesson_3/contacts_app")
+
+
+### Contact List App
+- **Project:** Build a contact  list app
 - **Description** Displays a list of contacts and search functionality.  Contacts can also be deleted by clicking the delete button. 
 - **Branch** [lesson_3/contacts_app](https://github.com/eddielee394/udacity_react_excercises/tree/lesson_3/contacts_app) 
 ![alt text](docs/screenshots/screenshot_contacts_app.gif "lesson_3/contacts_app")
