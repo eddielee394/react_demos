@@ -7,6 +7,12 @@ Course notes are written using standard markdown via [stackedit.io](https://stac
 
 ## Exercises 
 ### Lesson 3
+
+### Contact List App
+- **Project:** Build a contact  list app
+- **Branch** [lesson_3/contacts_app](https://github.com/eddielee394/udacity_react_excercises/tree/lesson_3/contacts_app) 
+![alt text](_docs/screenshots/screenshot_contacts_app.jpg "lesson_3/contacts_app")
+
 #### Exercise 1
 - **Project:** Favorite Movie List 
 - **Branch**: [lesson_3/exercise_1](https://github.com/eddielee394/udacity_react_excercises/tree/lesson_3/exercise_1) 
