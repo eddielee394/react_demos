@@ -12,10 +12,10 @@ class MovieProfile extends Component {
           <div className="flip flip_horizontal flip-box__multiply">
             <div className="flip__front d-flex flex-column justify-content-center">
               <div className="flip-box__multiply-title  font-weight-bold text-center text text-uppercase pl-lg-5 pr-lg-5 pl-3 pr-3">
-                <h1>{movieInfo.name}</h1>
+                <h2>{movieInfo.name}</h2>
               </div>
               <div
-                className="flip-box__multiply-decoration mx-auto"
+                className="flip-box__multiply-decoration mx-auto mb-3"
                 style={{
                   backgroundImage: `url(/images/movies/movie_${
                     movieInfo.id
@@ -23,9 +23,19 @@ class MovieProfile extends Component {
                   backgroundSize: "cover"
                 }}
               />
-              <span className="btn btn-outline-info font-weight-bold shadow-lg p-3 flip-box__multiply-btn mt-5 align-self-center">
-                <span className="text">Hover Me!!!</span>
-              </span>
+              <div className="row">
+                <div className="col col-12">
+                  <h4 className="text-center">Liked By: </h4>
+                </div>
+              </div>
+              <div className="row justify-content-center">
+                <div className="col col-8">
+                  <UserList
+                    usersWhoLikedMovie={usersWhoLikedMovie}
+                    users={users}
+                  />
+                </div>
+              </div>
             </div>
             <div
               className="flip__back  flip-box__bg flip-box__bg_overlay d-flex flex-column justify-content-center"
@@ -33,22 +43,6 @@ class MovieProfile extends Component {
                 backgroundImage: `url(/images/movies/movie_${movieInfo.id}.jpg)`
               }}
             />
-            <div className="flip-box__position  text-center">
-              <h1 className="flip-box__multiply-h4  font-weight-bold">
-                {/*{movies[profile.favoriteMovieID].name}*/}
-              </h1>
-              <button className="btn btn-outline-info font-weight-bold shadow-lg p-3 flip-box__multiply-btn mt-5">
-                <span className="text text-white">
-                  {/*View {users[profile.userID].userName}*/}
-                  's Profile
-                </span>
-              </button>
-            </div>
-
-            {/*<div className="flip-box__position  text-center">*/}
-            {/*<h3>Liked by: </h3>*/}
-            {/*<UserList usersWhoLikedMovie={usersWhoLikedMovie} users={users} />*/}
-            {/*</div>*/}
           </div>
         </div>
       </div>
