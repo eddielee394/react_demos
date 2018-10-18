@@ -36,11 +36,8 @@ Front-end frameworks like  [Angular](https://angular.io/)  and  [Ember](https://
 
 **React's Data-flow**
 Data moves differently with React's unidirectional data flow. In React, the data flows from the parent component to a child component.
-```mermaid
-graph LR
-A[Parent Component] -- DATA --> B[Child Component]
-B -- UPDATES --> A
-```
+
+![data_flow_graph](./images/lesson_1_dataflowchart.jpg)
 
 _Data flows down from parent component to child component. Data updates are sent to the parent component where the parent performs the actual change._
 <!--stackedit_data:
