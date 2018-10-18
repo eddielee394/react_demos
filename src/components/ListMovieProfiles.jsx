@@ -6,6 +6,7 @@ class ListMovieProfiles extends Component {
     //assign the movies and users objects to the this.props, so we have full access to both objects
     const { movies, users, usersByMovie } = this.props;
 
+    //ES6 destructured function with key mapping by id
     const movieProfiles = Object.keys(movies).map(id => (
       <MovieProfile
         key={id}
