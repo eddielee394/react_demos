@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import logo from './logo.svg';
 import ListUserProfiles from "./components/ListUserProfiles";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import ListMovieProfiles from "./components/ListMovieProfiles";
+
 
 /*
  Use React and the data below to display a list of users alongside their favorite movies.
@@ -99,6 +102,21 @@ const movies = {
 };
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.usersByMovie = {};
+        
+        profiles.forEach(profile => {
+            const movieID = profile.favoriteMovieID;
+            
+            if (this.usersByMovie[movieID]) {
+                this.usersByMovie[movieID].push(profile.userID);
+            } else {
+                this.usersByMovie[movieID] = [profile.userID];
+            }
+        });
+    }
+    
     render() {
         return (
             <div className='main'>
@@ -113,10 +131,21 @@ class App extends Component {
                 <div className='container'>
                     <div className='row mt-3 mb-3'>
                         <div className='col-12 col'>
-                            <h2 className='text-center'>Favorite Movies</h2>
+                            <Tabs className='brk-tabs brk-tabs-parallax'>
+                                <TabList className='brk-tabs-nav'>
+                                    <Tab className='brk-tab'>User Profiles</Tab>
+                                    <Tab className='brk-tab'>Favorite Movies</Tab>
+                                </TabList>
+                                <TabPanel className='brk-tab-item'>
+                                    <ListUserProfiles profiles={profiles} users={users} movies={movies} usersByMovie={this.usersByMovie}/>
+                                </TabPanel>
+                                <TabPanel className='brk-tab-item'>
+                                    <ListMovieProfiles profiles={profiles} users={users} movies={movies} usersByMovie={this.usersByMovie}/>
+                                </TabPanel>
+                            </Tabs>
                         </div>
                     </div>
-                    <ListUserProfiles profiles={profiles} users={users} movies={movies}/>
+                
                 </div>
             </div>
         );

@@ -23,12 +23,7 @@ class ListUserProfiles extends Component {
                       }.jpg)`,
                       backgroundSize: "cover"
                     }}
-                  >
-                    <i
-                      className="fal fa-angle-right font__size-28 font__weight-thin"
-                      aria-hidden="true"
-                    />
-                  </div>
+                  />
                   <span className="btn btn-outline-info font-weight-bold shadow-lg p-3 flip-box__multiply-btn mt-5 align-self-center">
                     <span className="text">Hover Me!!!</span>
                   </span>
