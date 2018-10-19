@@ -25,5 +25,10 @@ Course notes are written using standard markdown via [stackedit.io](https://stac
 
 ### Exercise 3
 - **Project:** Functional components 
-- **Branch:** [lesson_3/exercise_3](https://github.com/eddielee394/udacity_react_excercises/tree/lesson_3/exercise_2)
+- **Branch:** [lesson_3/exercise_3](https://github.com/eddielee394/udacity_react_excercises/tree/lesson_3/exercise_3)
 ![alt text](_docs/screenshots/screenshot_ex2.jpg "lesson_3/exercise_2")
+
+### Exercise 4
+- **Project:** Managing State 
+- **Branch:** [lesson_3/exercise_4](https://github.com/eddielee394/udacity_react_excercises/tree/lesson_3/exercise_4)
+![alt text](_docs/screenshots/screenshot_ex4.jpg "lesson_3/exercise_2")
