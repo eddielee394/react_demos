@@ -138,7 +138,7 @@ https://tylermcginnis.com/functional-components-vs-stateless-functional-componen
 
 
 # Component State
-A components state represents mutable data that ultimately affects what is rendered on the page. 
+A components state represents mutable data that ultimately affects what is rendered on the page.   State is managed internally by the component itself and is meant to change over time, commonly due to user input (e.g., clicking on a button on the page).
 
 Two primary concerns with Reactjs:  
 - What is the state of my application?
@@ -156,7 +156,67 @@ class User extends Component {
     }
 }
 ```
+
+By having a component manage its own state, any time there are changes made to that state, React will know and _automatically_ make the necessary updates to the page.
+
+React compares the previous output and new output, determines what has changed, and makes these decisions of what should be rendered for us. This process of determining what has changed in the previous and new outputs is called `Reconciliation`.
+
+**Class Fields**
+When an object is directly inside of a class & not in a constructor method it's considered a _Class Field_
+
+```
+class User extends React.Component {
+//Class field
+ state = {
+   username: 'Tyler'
+ } 
+}
+```
+
+**Props in Initial State**
+When defining a component's initial state, avoid initializing that state with `props`. This is an error-prone _anti-pattern_, since state will only be initialized with `props` when the component is first created.
+```
+this.state = {
+ user: props.user
+}
+```
+If props are ever updated, the current state will not change unless the component is "refreshed".  Using props to produce a components initial states leads to duplication of data, removing our _Single Source of Truth_
+
+## Further Research
+https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live
+
+
+# Update State with setState()
+You cannot update a components state directly, as React won't know the state has been updated.  Instead, use the `setState()` helper method.  
+Two ways to use `setState()`: 
+1. Passing a function
+ -  Typically used when the new state depends on the previous state of the component. 
+```
+//function is passed the prevState as the 1st argument
+this.setState((prevState) => ({
+    //the object returned will be merged with the current state to form the new state
+    count: prevState.count + 1; 
+}))
+```
+2. Passing an Object
+- Used in most instances where component doesn't rely on previous state. 
+```
+//object is passed to the setState method
+this.setState({
+   //object returned will be merged with the current object to form the new state
+   username: 'Tyler'
+})
+```
+
+When `setState()` is invoked, UI will be updated.  Component will call the `render()` method.  
+
+## Further Research
+-   [Using State Correctly](https://facebook.github.io/react/docs/state-and-lifecycle.html)  from the React Docs
+-   [Build with React](http://buildwithreact.com/tutorial/state)'s article on State
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU2OTY5NDMzMSwtMTA4OTQwNDAzLDI2Nj
-k0MjY4OCwtMTkwMDI1OTc3MCwtMzE0OTY4OTUzXX0=
+eyJoaXN0b3J5IjpbMTY5NTA5NDAzNCwtNTY5Njk0MzMxLC0xMD
+g5NDA0MDMsMjY2OTQyNjg4LC0xOTAwMjU5NzcwLC0zMTQ5Njg5
+NTNdfQ==
 -->
