@@ -34,8 +34,7 @@ class AddUser extends Component {
         event.preventDefault();
         //now we can check if the input is unique or not
         const userExists = this.inputIsUnique(this.state.user.username);
-        console.log(userExists);
-        
+
         if(!userExists) {
             this.props.onAddUser(this.state.user);
         }

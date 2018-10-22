@@ -36,7 +36,7 @@ class App extends Component {
             <div className="col col-12">
               <ListUsers
                 users={users}
-                callbackfn={user => <User user={user} key={user.userId} />}
+                callbackfn={(user, index) => <User user={user} key={index} />}
               />
             </div>
           </div>
