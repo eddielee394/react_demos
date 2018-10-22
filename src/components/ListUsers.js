@@ -1,20 +1,22 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
+import User from "./User";
+import PropTypes from 'prop-types';
 
-class ListUsers extends Component {
-  render() {
-    const { users } = this.props;
-    return (
-      <div className="user-list-container">
+function ListUsers(props) {
+    const {users} = props;
+    
+    return (<div className="user-list-container">
         <div className="user-container">
-          <h2 className="section-title my-3">All Users</h2>
-          <div className="card-columns">{users.map(this.props.callbackfn)}</div>
+            <h2 className="section-title my-3">All Users</h2>
+            <div className="card-columns">
+                {users.map(user => (<User user={user} key={user.username}/>))}
+            </div>
         </div>
-      </div>
-    );
-  }
+    </div>);
 }
 
-ListUsers.propTypes = {};
+ListUsers.propTypes = {
+    users: PropTypes.array.isRequired
+};
 
 export default ListUsers;
