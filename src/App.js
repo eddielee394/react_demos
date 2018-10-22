@@ -3,11 +3,17 @@ import "./App.css";
 import * as PropTypes from "prop-types";
 import AddUser from "./components/AddUser";
 import ListUsers from "./components/ListUsers";
-import User from "./components/User";
 
 class App extends Component {
   state = {
-    users: []
+    users: [
+      {
+        firstName: "Firsttest",
+        lastName: "Lasttest",
+        username: "Usernametest",
+        numGamesPlayed: 0
+      }
+    ]
   };
 
   createContact = user => {
@@ -34,10 +40,7 @@ class App extends Component {
           </div>
           <div className="row">
             <div className="col col-12">
-              <ListUsers
-                users={users}
-                callbackfn={(user, index) => <User user={user} key={index} />}
-              />
+              <ListUsers users={users} />
             </div>
           </div>
         </div>
