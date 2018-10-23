@@ -44,7 +44,7 @@ Course notes are written using standard markdown via [stackedit.io](https://stac
 - **Branch:** [lesson_3/exercise_7](https://github.com/eddielee394/udacity_react_excercises/tree/lesson_3/exercise_7)
 ![alt text](_docs/screenshots/screenshot_ex7.gif "lesson_3/exercise_7")
 
-### Exercise 7
+### Exercise 8
 - **Project:** All Together (Chat Application)
 - **Description** Basic chat application between two users.  Sender messages are always displayed in green, while recipient messages are always displayed in blue. Message submit button is disabled if no message is present in the add message field.   
 - **Branch:** [lesson_3/exercise_8](https://github.com/eddielee394/udacity_react_excercises/tree/lesson_3/exercise_8)
