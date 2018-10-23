@@ -1,0 +1,67 @@
+---
+
+
+---
+
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.# Functions</p>
+</blockquote>
+<h2 id="arrow-functions">Arrow Functions</h2>
+<p>Similar to regular functions except arrow functions are always expressions<br>
+Can be used as:</p>
+<ul>
+<li>Stored as variable</li>
+<li>passed as an argument to a function</li>
+<li>stored as an object property</li>
+<li>affects <code>this</code> keyword depending on where the arrow function is located within the code</li>
+</ul>
+<p>When stored as a variable, a single paramter <strong>does not</strong> require parenthesis.  Multiple parameters or no params <strong>do</strong> require parenthesis.</p>
+<pre><code>//single param no parenthesis
+const foo = bar =&gt; console.log(bar); 
+
+//empty param requires parenthesis
+const foo = () =&gt; console.log(bar); 
+
+//multiple params requires parenthesis
+const foo = (bar, baz) =&gt; console.log(bar,baz); 
+</code></pre>
+<h3 id="concise-and-block-body-syntax">Concise and block body syntax</h3>
+<p><strong>Concise body syntax</strong>:<br>
+Generally used with single expression as the function body.</p>
+<ul>
+<li>has no curly braces surrounding the function body</li>
+<li>automatically returns the expression</li>
+</ul>
+<pre><code>const upperizedNames = ['Farrin', 'Kagure', 'Asser'].map(
+  name =&gt; name.toUpperCase()
+);
+</code></pre>
+<p><strong>Block body syntax</strong><br>
+Used with multiple expressions in the functions body.</p>
+<ul>
+<li>Uses curly braces to wrap the function body</li>
+<li>uses a <code>return</code> statement</li>
+</ul>
+<pre><code>const upperizedNames = ['Farrin', 'Kagure', 'Asser'].map( name =&gt; {
+  name = name.toUpperCase();
+  return `${name} has ${name.length} characters in their name`;
+});
+</code></pre>
+<h3 id="this-keyword">“this” keyword</h3>
+<p>Value of <code>this</code> is based on the <em>functions’ surrounding context</em>.  The value of <code>this</code> inside an arrow function is the same as the value of <code>this</code> outside the function.</p>
+<ul>
+<li>When referencing <code>this</code> within an arrow function, always make sure it’s within the correct scope.</li>
+</ul>
+<h3 id="default-function-parameters">Default function Parameters</h3>
+<p>Default values are assigned to the params with in the function declaration.</p>
+<pre><code>function greet(name = 'Student') {
+    return `${student}`;
+}
+
+console.log(greet())
+//outputs "Student"
+
+console.log(greet("Joe"));
+//outputs "Joe"; 
+</code></pre>
+

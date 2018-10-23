@@ -1,0 +1,230 @@
+---
+
+
+---
+
+<h1 id="es6-syntax">ES6 Syntax</h1>
+<h2 id="let-and-const">Let and Const</h2>
+<p>Variables declared with <code>let</code> and <code>const</code> are in the block scope, instead of globally or locally. This eliminates the issue of <a href="https://medium.com/javascript-in-plain-english/https-medium-com-javascript-in-plain-english-what-is-hoisting-in-javascript-a63c1b2267a1"><em>Hoisting</em></a> that occurs when using <code>var</code>.</p>
+<ul>
+<li>prevents variables from being accessed only until after they’ve been declared.</li>
+</ul>
+<pre><code>//Written function using var
+function getClothing(isCold) {
+  if (isCold) {
+    var freezing = 'Grab a jacket!';
+  } else {
+    var hot = 'It’s a shorts kind of day.';
+    console.log(freezing);
+  }
+}
+
+//Hoisted function using var after being interpreted by the browser
+function getClothing(isCold) {
+var freezing, hot;
+  if (isCold) {
+    freezing = 'Grab a jacket!';
+  } else {
+    hot = 'It’s a shorts kind of day.';
+    console.log(freezing);
+  }
+}
+
+//Written function using let/const
+function getClothing(isCold) {
+  if (isCold) {
+    // freezing only accessible in this block
+    const freezing = 'Grab a jacket!';
+  } else {
+    //hot only accessible in this block
+    const hot = 'It’s a shorts kind of day.';
+    console.log(freezing);
+  }
+}
+</code></pre>
+<h3 id="rules">Rules</h3>
+<ul>
+<li>Variables declared with  <code>let</code>  can be reassigned, but can’t be redeclared in the same scope.</li>
+<li>Variables declared with  <code>const</code>  must be assigned an initial value, but can’t be redeclared in the same scope, and can’t be reassigned.</li>
+</ul>
+<h3 id="use-cases">Use Cases</h3>
+<ul>
+<li>use  <code>let</code>  when you plan to reassign new values to a variable, and</li>
+<li>use  <code>const</code>  when you don’t plan on reassigning new values to a variable.</li>
+</ul>
+<h2 id="template-literals">Template Literals</h2>
+<p><strong>Template literals</strong>  are essentially string literals that include embedded expressions.</p>
+<p>Denoted with backticks (<code>` `</code>) instead of single quotes (  <code>''</code>  ) or double quotes (  <code>""</code>  ), template literals can contain placeholders which are represented using  <code>${expression}</code>. This makes it  <em>much easier</em>  to build strings.</p>
+<pre><code>let message = `${foo.bar} foo bar baz ${foo.baz} bal foo ban.`  
+</code></pre>
+<ul>
+<li>No need for concatenation, <code>+</code> quotes or newline characters.</li>
+<li>Can reference object’s properties, perform operations, call functions and use loops</li>
+</ul>
+<h2 id="destructuring">Destructuring</h2>
+<p>Extract data from arrays and objects into distinct variables using <em>Destructuring</em>.<br>
+Elements you want to extract are specified on the left side of an assignment.</p>
+<pre><code>//set foo to an array
+const foo = [10, 25, -34];
+
+//destructure the foo array
+const [x, y, z] = foo; 
+
+//Outputs 10 25 -34
+console.log(x, y, z);
+
+//skip an element in the array
+const[x,,z] = foo;
+
+//Outputs 10 -34
+console.log(x,z)
+</code></pre>
+<p><strong>Important</strong><br>
+When destructuring an object, functions assigned to variables within that object will no longer have access to <code>this</code><br>
+<em>Example</em>:</p>
+<pre><code>const foo = {
+    bar: 10
+    baz: function() {
+        //uses this to reference bar property
+        return this.bar;
+    }
+}
+//destructure baz from foo object
+let {baz} = foo;
+
+//will return NaN
+console.log(baz());
+</code></pre>
+<h2 id="object-literal-shorthand">Object Literal Shorthand</h2>
+<h3 id="var-declarations">Var Declarations</h3>
+<p>If object properties have the same name as variables being assigned, you don’t have to  declare the variable name as the value for the object property.</p>
+<h3 id="method-declarations">Method Declarations</h3>
+<p>Methods can also be implicitly declared by dropping the <code>function</code> keyword.</p>
+<pre><code>//initil variable declarations have same name as object properties
+let type = 'foo'; 
+let color = 'bar'; 
+let carat = 'baz'; 
+
+//explicitly declaring the variables and method
+let gemstone = {
+   type = type, 
+   color = color,
+   carat = carat,
+   calculateWorth: function() {
+    ..// do stuff
+  }
+};
+
+//implicitly declaring the variables instead
+let gemstone = {
+   type,
+   color,
+   carat,
+   calculateWorth() {
+   ..// do stuff
+   }
+}
+</code></pre>
+<h2 id="iteration">Iteration</h2>
+<p>The iterable protocol allows <em>JavaScript</em> objects to <em>define</em> or customize their iteration behavior, such as what values are looped over in a for loop.</p>
+<ul>
+<li><code>i</code> in a for loop stands for <em>iterator</em></li>
+<li>Object data types are not iterable, by default</li>
+</ul>
+<h3 id="for-loops">For Loops</h3>
+<p>Applicable to iterable data types:</p>
+<ul>
+<li>String</li>
+<li>Array</li>
+<li>Map</li>
+<li>Set</li>
+</ul>
+<p><strong>Cons of using each loop type</strong></p>
+<ul>
+<li>for loop
+<ul>
+<li>keeping track of the counter &amp; exit condition</li>
+</ul>
+</li>
+<li>for…in loop
+<ul>
+<li>doesn’t need count &amp; exist condition</li>
+<li>still needs to keep track of the index</li>
+<li>loops over all enumerable properties, so if additional properties are added to the array - it will also appear in the loop.</li>
+<li>Not good for arrays</li>
+</ul>
+</li>
+<li>forEach loop
+<ul>
+<li>Only can be used with an array.</li>
+<li>No way to stop or break</li>
+</ul>
+</li>
+</ul>
+<h3 id="for...of-loop">for…of loop</h3>
+<ul>
+<li>Used to loop of any iterable data type.</li>
+<li>Written like a <code>for...in</code> loop, without the index.</li>
+</ul>
+<pre><code>const digits = [1,2,3,4,5]
+for(const digit of digits) {
+    console.log(digit); 
+}
+
+//Output
+1,
+2,
+3,
+4,
+5
+</code></pre>
+<p><strong>Benefits</strong></p>
+<ul>
+<li>Can stop/break using <code>continue</code></li>
+<li>Adding new properties doesn’t affect it, since it only loops over values in an object.</li>
+</ul>
+<h2 id="spread...-operator">Spread… Operator</h2>
+<p>Expands iterable objects in to multiple elements</p>
+<ul>
+<li>Written as:  <code>...</code></li>
+<li>Useful when combining arrays</li>
+</ul>
+<pre><code>//basic spread operator usage
+const foo = [1,2,3,4,5];
+const bar = [6,7,8,9,10]
+//Single array - outputs 1 2 3 4 5
+console.log(...foo);
+
+//Concatenating multiple arrays - outputs 1 2 3 4 5 6 7 8 9 10
+console.log(...foo,...bar);
+
+</code></pre>
+<h2 id="rest-parameter">Rest Parameter</h2>
+<p>Represents an indefinite number of elements in an array.</p>
+<ul>
+<li>Written as:  <code>...</code></li>
+<li>Useful when assigning values of an array to variables</li>
+</ul>
+<pre><code>const order = [1,2,3,"foo","bar","baz"]
+
+//destructure the array grab the first 3 elements and assign them to the price, subtotal &amp; total variables.  Then iterate of the rest of the elements in the array using rest and assign to items variable as a new array. 
+const [price,subtotal,total,...items] = order; 
+
+//Outputs:  1 2 3 ["foo","bar","baz"]
+console.log(price,subtotal,total,items); 
+</code></pre>
+<h3 id="variadic-functions">Variadic Functions</h3>
+<p><strong>Variadic functions</strong> are functions that take an indefinite number of arguments.</p>
+<pre><code>function sum(...numbers) {
+    let total = 0; 
+    for(const number of numbers) {
+        total += number;
+    }
+    return total; 
+}
+
+//add 1 + 5 + 9
+console.log(sum(1,5,9));
+//Output: 15
+</code></pre>
+

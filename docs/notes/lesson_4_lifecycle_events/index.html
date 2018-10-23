@@ -1,0 +1,35 @@
+---
+
+
+---
+
+<h1 id="introduction">Introduction</h1>
+<p><code>render()</code> is for rendering only.  It should not:</p>
+<ul>
+<li>make any http requests</li>
+<li>fetch data used to display the content</li>
+<li>alter the DOM</li>
+<li>call any functions that do any of these things</li>
+</ul>
+<p>Code that handles things like Ajax requests should be placed in <code>lifecycle events</code>.</p>
+<h2 id="lifecycle-events">Lifecycle Events</h2>
+<p>Default methods that are automatically bound to the component instance and React will call these methods naturally at certain times during the life of a component.</p>
+<p><strong>Commonly used lifecycle events</strong></p>
+<ul>
+<li><code>componentDidMount()</code>
+<ul>
+<li>invoked immediately <em>after</em> the component is <em>inserted</em> into the DOM.</li>
+</ul>
+</li>
+<li><code>componentWillUnmount()</code>
+<ul>
+<li>invoked immediately <em>before</em> a component is _ removed_ from the DOM</li>
+</ul>
+</li>
+<li><code>getDerivedStateFromProps()</code>
+<ul>
+<li>invoked after a component is instantiated as well as when it receives brand new props.</li>
+</ul>
+</li>
+</ul>
+

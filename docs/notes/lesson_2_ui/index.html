@@ -1,0 +1,195 @@
+---
+
+
+---
+
+<ul>
+<li><a href="#creating-elements-and-jsx">Creating Elements and JSX</a>
+<ul>
+<li><a href="#rendering-elements-onto-the-dom">Rendering Elements onto The Dom</a></li>
+<li><a href="#nesting">Nesting</a></li>
+<li><a href="#jsx">JSX</a></li>
+<li><a href="#components">Components</a>
+<ul>
+<li><a href="##declaring-components-in-react">Declaring Components in React</a></li>
+</ul>
+<ul>
+<li><a href="#further-research">Further Research</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#create-react-app">Create React App</a></li>
+<li><a href="#component-composition">Component Composition</a></li>
+</ul>
+<hr>
+<h1 id="creating-elements-and-jsx">Creating Elements and JSX</h1>
+<h2 id="rendering-elements-onto-the-dom">Rendering Elements onto The Dom</h2>
+<pre><code>React.createElement(/* type */, /*props */, /* content */) 
+</code></pre>
+<ul>
+<li>
+<p><code>type</code>  – either a string or a React Component</p>
+<ul>
+<li>This can be a string of any existing HTML element (e.g.  <code>'p'</code>,  <code>'span'</code>, or  <code>'header'</code>) or you could pass a React  <em>component</em>  (we’ll be creating components with JSX, in just a moment).</li>
+</ul>
+</li>
+<li>
+<p><code>props</code>  – either  <code>null</code>  or an object</p>
+<ul>
+<li>This is an object of HTML attributes and custom data about the element.</li>
+</ul>
+</li>
+<li>
+<p><code>content</code>  –  <code>null</code>, a string, a React Element, or a React Component</p>
+<ul>
+<li>Anything that you pass here will be the content of the rendered element. This can include plain text, JavaScript code, other React elements, etc.</li>
+</ul>
+</li>
+</ul>
+<p><strong>.createElement() Returns <em>ONE</em> Root Element</strong></p>
+<pre><code>const element = React.createElement('div',null,'hello world');
+
+ReactDom.render(
+element,
+document.getElementById('root')
+);
+</code></pre>
+<p>Apps built with React typically have a single root DOM node. For example, an HTML file may contain a </p><div> with the following:</div><p></p>
+<p><code>&lt;div id="root"&gt;&lt;/div&gt;</code></p>
+<p>When creating attributes, remember that we’re referencing DOM nodes.<br>
+React Attributes: <a href="https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes">https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes</a></p>
+<h3 id="nesting">Nesting</h3>
+<p>React elements can be nested within a parent element.</p>
+<pre><code>const people = [
+{name: 'Tyler'},
+{name: 'Karen'},
+{name: 'Richard'}
+];
+
+const element = React.createElement('ol',null,
+    people.map((person) =&gt; (
+        React.createelement('li', {key: person.name}, person.name)
+        );
+)
+</code></pre>
+<p><em>When mapping an array each element needs a key prop defined.  i.e. <code>{key: person.name}</code></em></p>
+<h2 id="jsx">JSX</h2>
+<p>JSX is a syntax extension that allows us to write code similar to html.</p>
+<pre><code>const people = [
+{name: 'Tyler'},
+{name: 'Karen'},
+{name: 'Richard'}
+];
+
+const element = 
+//&lt;ol&gt;, &lt;li&gt; are jsx tags
+&lt;ol&gt; 
+//now we add our js object to map/loop the array to our &lt;li&gt; jsx tag
+{ people.map((person) =&gt; ( //
+    &lt;li&gt;{person.name}&lt;/li&gt;
+))}
+&lt;/ol&gt;
+</code></pre>
+<p><strong>JSX also returns <em>One</em> main element</strong><br>
+When writing JSX, keep in mind that it must only return a single element. This element may have any number of descendants, but there  <em>must</em>  be a single root element wrapping your overall JSX (typically a  <code>&lt;div&gt;</code>  or a  <code>&lt;span&gt;</code>).<br>
+Sibling elements must be wrapped in enclosing tag otherwise React returns an error.</p>
+<h2 id="components">Components</h2>
+<p>Components refer to <em>resuable</em> pieces of code responsible for returning HTML to be rendered onto the page . Usually written with JSX.</p>
+<ul>
+<li>Can be thought of as <em>Factories</em> used to create instances of React elements/component classes.</li>
+<li><code>render()</code> is only method <em>absolutely</em> required in any React component class.</li>
+<li>React is only concerned with the View layer of our app.</li>
+<li>Component classes should always follow <em>single responsibility principle</em></li>
+</ul>
+<h3 id="declaring-components-in-react">Declaring Components in React</h3>
+<p>A component is defined as a JavaScript class that inherits from <code>React.Component</code></p>
+<pre><code>class ContactList extends React.Component {
+    render() {
+        //define the array const
+        const people = [
+            {name: 'Tyler'},
+            {name: 'Karen'},
+            {name: 'Richard'}
+        ];
+        
+        //map the array &amp; return the looped list
+        return &lt;ol&gt;
+            { people.map((person) =&gt; (
+                &lt;li&gt;{person.name}&lt;/li&gt;
+            ))}
+        &lt;/ol&gt;;
+    }
+}
+
+ReactDOM.render(
+    //render the ContactList component
+    &lt;ContactList /&gt;,
+    document.getElementById('root'));
+</code></pre>
+<p>React.Component can also be imported so the parent class alias can be used as:</p>
+<pre><code>//import parent React.Component class
+import React, {Component} from 'react'; 
+
+//Extend the parent class alias 
+class ContactList extends Component{
+//...
+}
+</code></pre>
+<h3 id="further-research">Further Research</h3>
+<p><a href="https://facebook.github.io/react/docs/rendering-elements.html">https://facebook.github.io/react/docs/rendering-elements.html</a></p>
+<h1 id="create-react-app">Create React App</h1>
+<p><code>create-react-app</code> is a package developed to scaffold React applications.  Zero config install &amp; includes:  Webpack, Babel, react, react-dom, react-scripts</p>
+<p><code>create-react-app contacts</code> – Creates React scaffold project</p>
+<p><code>yarn start</code> or <code>npm start</code> – Starts the built-in node server</p>
+<h1 id="component-composition">Component Composition</h1>
+<p>Components are building blocks of React &amp; main unit of encapsulation.  Breaks down UI into smaller pieces.</p>
+<ul>
+<li>Encourages composition over inheritance</li>
+<li>React components are never extended more than once.</li>
+<li>Instead of extending base components to add additional behavior,  we compose elements using nesting &amp; props.
+<ul>
+<li>Allows UI components to be independent, focused  &amp; reusable</li>
+</ul>
+</li>
+</ul>
+<pre><code>import React, { Component } from 'react';
+
+class ContactList extends Component {
+    render() {
+        //define the array const, using the component props
+        const people = this.props.contacts;
+        
+        //map the array &amp; return the looped list
+        return &lt;ol&gt;
+            {people.map((person) =&gt; (
+                &lt;li key={person.name}&gt;{person.name}&lt;/li&gt;
+            ))}
+        &lt;/ol&gt;
+    }
+}
+
+class App extends Component {
+    render() {
+        return (
+            &lt;div className="App"&gt;
+              {/*"contacts" prop is passed to the component allowing different arrays per component */}
+                &lt;ContactList contacts={[
+                    {name: 'Tyler'},
+                    {name: 'Karen'},
+                    {name: 'Richard'}
+                ]} /&gt;
+                &lt;ContactList contacts={[
+                    {name: 'Ryan'},
+                    {name: 'Jan'},
+                    {name: 'Frank'}
+                ]} /&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+ 
+export default App;
+
+</code></pre>
+

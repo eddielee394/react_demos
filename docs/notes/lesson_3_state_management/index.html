@@ -1,0 +1,263 @@
+---
+
+
+---
+
+<ul>
+<li><a href="#component-data-and-props">Component Data &amp; Props</a>
+<ul>
+<li><a href="#further-research">Further Research</a>
+<ul>
+<li><a href="#test">test</a></li>
+</ul>
+</li>
+<li><a href="#test">test</a></li>
+</ul>
+</li>
+<li><a href="#functional-components">Functional Components</a></li>
+</ul>
+<hr>
+<h1 id="component-data-and-props">Component Data and Props</h1>
+<p>Any attributes added to a component is accessible on the props object from inside that component.</p>
+<pre><code>//app.js
+import React, { Component } from 'react';
+import ListContacts from './ListContacts'
+
+const contacts = [
+    {
+        "id": "karen",
+        "name": "Karen Isgrigg",
+        "handle": "karen_isgrigg",
+        "avatarURL": "http://localhost:5001/karen.jpg"
+    },
+    {
+        "id": "richard",
+        "name": "Richard Kalehoff",
+        "handle": "richardkalehoff",
+        "avatarURL": "http://localhost:5001/richard.jpg"
+    },
+    {
+        "id": "tyler",
+        "name": "Tyler McGinnis",
+        "handle": "tylermcginnis",
+        "avatarURL": "http://localhost:5001/tyler.jpg"
+    }
+];
+
+class App extends Component {
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;ListContacts contacts={contacts} /&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+//ListContacts.jsx
+class ListContacts extends Component {
+    render() {
+        console.log('Props', this.props);
+        return (
+            &lt;ol className={'contact-list'}&gt;
+            &lt;/ol&gt;
+        );
+    }
+}
+</code></pre>
+<p>Props can be passed to a component by adding the prop name and value:<br>
+<code>&lt;Clock currentTime={new Date().getTime()} /&gt;</code><br>
+Where <code>currentTime</code> is the prop and <code>{new Date().getTime()}</code> is the value.</p>
+<p>All props are stored in the <code>this.props</code> object. To access the value from inside the component we’d use:<br>
+<code>this.props.currentTime</code></p>
+<p><strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">Template Literals</a></strong><br>
+Template literals are string literals allowing embedded expressions. You can use multi-line strings and string interpolation features with them. They were called “template strings” in prior editions of the ES2015 specification.</p>
+<p>Template literals are enclosed by back-ticks instead of double/single quotes.</p>
+<h3 id="further-research">Further Research</h3>
+<p><a href="https://facebook.github.io/react/docs/components-and-props.html">https://facebook.github.io/react/docs/components-and-props.html</a></p>
+<h1 id="stateless-functional-components">Stateless Functional Components</h1>
+<p>If your component does not keep track of internal state &amp; only contains a <code>render()</code> method, than a regular javascript function can be used to generate the component:</p>
+<p><em>Class Based Component</em></p>
+<pre><code>class User extends Component {
+    render() {
+       return (
+          &lt;p&gt;Username: {this.props.username} &lt;/p&gt;
+       )
+    }
+}
+</code></pre>
+<p><em>Stateless Functional Component</em></p>
+<pre><code>//using a regular js function
+function User(props) {
+    return (
+        &lt;p&gt;Username:  {props.username}&lt;/p&gt;
+    )
+}
+
+//ES6 function with an implicit return
+ const Email = (props) =&gt; (
+ &lt;div&gt;
+   {props.text}
+ &lt;/div&gt;
+);
+</code></pre>
+<h2 id="props">Props</h2>
+<p>In functional components, props are not accessed using the <code>this</code> keyword.  Instead props are passed as an argument to the function.</p>
+<pre><code>function User(props){
+    //..do something
+}
+</code></pre>
+<h2 id="binding-events">Binding Events</h2>
+<p>The bind keyword isn’t necessary for a stateless component.  Removing the class eliminates the need for calling <code>bind()</code> to pass the <code>this</code> context.</p>
+<pre><code>//Component Class onClick bind
+onClick={this.sayHi.bind(this)}&gt;Say Hi&lt;/a&gt;
+
+//Stateless Component without bind
+onClick={sayHi}&gt;Say Hi&lt;/a&gt;
+</code></pre>
+<h2 id="benefits-of-stateless-functional-components">Benefits of Stateless Functional Components</h2>
+<ul>
+<li>No Class needed</li>
+<li>No <code>this</code> keyword</li>
+<li>Helps enforce best practices
+<ul>
+<li>SFC are useful for <em>presentational components focused on UI rather than behavior</em></li>
+</ul>
+</li>
+<li>High Signal-to-Noise ratio
+<ul>
+<li>Allows easier to read &amp; fewer lines of code especially with <a href="https://wesbos.com/destructuring-objects/">ES6 destructuring</a></li>
+</ul>
+</li>
+<li>Improved code completion
+<ul>
+<li>When using destructuring, data is now specified in a simple argument allowing for better code IDE completion.</li>
+</ul>
+</li>
+<li>Better code smell
+<ul>
+<li>When using destructuring the argument list clearly conveys component dependencies, thus easier to spot components that can be refactored into separate components.</li>
+</ul>
+</li>
+<li>Easy to test
+<ul>
+<li>Assertions are much more straightforward:  <em>Given these values for props, I expect it to return this markup</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="further-reading">Further Reading</h2>
+<p><a href="https://tylermcginnis.com/functional-components-vs-stateless-functional-components-vs-stateless-components/">https://tylermcginnis.com/functional-components-vs-stateless-functional-components-vs-stateless-components/</a></p>
+<h1 id="component-state">Component State</h1>
+<p>A components state represents mutable data that ultimately affects what is rendered on the page.   State is managed internally by the component itself and is meant to change over time, commonly due to user input (e.g., clicking on a button on the page).</p>
+<p>Two primary concerns with Reactjs:</p>
+<ul>
+<li>What is the state of my application?</li>
+<li>How does the UI change based on that state?</li>
+</ul>
+<pre><code>class User extends Component {
+    state = {
+        username: 'Tyler'
+    }
+    render() {
+        return (
+            &lt;p&gt;Username: {this.state.username}&lt;/p&gt;
+        )
+    }
+}
+</code></pre>
+<p>By having a component manage its own state, any time there are changes made to that state, React will know and <em>automatically</em> make the necessary updates to the page.</p>
+<p>React compares the previous output and new output, determines what has changed, and makes these decisions of what should be rendered for us. This process of determining what has changed in the previous and new outputs is called <code>Reconciliation</code>.</p>
+<p><strong>Class Fields</strong><br>
+When an object is directly inside of a class &amp; not in a constructor method it’s considered a <em>Class Field</em></p>
+<pre><code>class User extends React.Component {
+//Class field
+ state = {
+   username: 'Tyler'
+ } 
+}
+</code></pre>
+<p><strong>Props in Initial State</strong><br>
+When defining a component’s initial state, avoid initializing that state with <code>props</code>. This is an error-prone <em>anti-pattern</em>, since state will only be initialized with <code>props</code> when the component is first created.</p>
+<pre><code>this.state = {
+ user: props.user
+}
+</code></pre>
+<p>If props are ever updated, the current state will not change unless the component is “refreshed”.  Using props to produce a components initial states leads to duplication of data, removing our <em>Single Source of Truth</em></p>
+<h2 id="further-research-1">Further Research</h2>
+<p><a href="https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live">https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live</a></p>
+<h1 id="update-state-with-setstate">Update State with setState()</h1>
+<p>You cannot update a components state directly, as React won’t know the state has been updated.  Instead, use the <code>setState()</code> helper method.<br>
+Two ways to use <code>setState()</code>:</p>
+<ol>
+<li>Passing a function</li>
+</ol>
+<ul>
+<li>Typically used when the new state depends on the previous state of the component.</li>
+</ul>
+<pre><code>//function is passed the prevState as the 1st argument
+this.setState((prevState) =&gt; ({
+    //the object returned will be merged with the current state to form the new state
+    count: prevState.count + 1; 
+}))
+</code></pre>
+<ol start="2">
+<li>Passing an Object</li>
+</ol>
+<ul>
+<li>Used in most instances where component doesn’t rely on previous state.</li>
+</ul>
+<pre><code>//object is passed to the setState method
+this.setState({
+   //object returned will be merged with the current object to form the new state
+   username: 'Tyler'
+})
+</code></pre>
+<p>When <code>setState()</code> is invoked, UI will be updated.  Component will call the <code>render()</code> method.</p>
+<h2 id="further-research-2">Further Research</h2>
+<ul>
+<li><a href="https://facebook.github.io/react/docs/state-and-lifecycle.html">Using State Correctly</a>  from the React Docs</li>
+<li><a href="http://buildwithreact.com/tutorial/state">Build with React</a>’s article on State</li>
+</ul>
+<h1 id="proptypes">PropTypes</h1>
+<p>Package that ensures the correct PropType is being passed to a component.</p>
+<h1 id="controlled-components">Controlled Components</h1>
+<p>Components that render a form where the source of truth for the form state lives inside the component state (instead of the DOM).</p>
+<ul>
+<li>Used with Forms</li>
+<li>Form input is updated when the component state is updated.</li>
+<li>
+<ul>
+<li>Each update to state has an associated handler function</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Form elements receive their current value via an attribute</li>
+</ul>
+</li>
+<li>Form input values are generally stored in the component’s state</li>
+<li>Event handlers for a controlled element update the components state</li>
+</ul>
+<p><strong>Benefits</strong></p>
+<ul>
+<li>instant input validation</li>
+<li>conditionally disable/enable buttons</li>
+<li>enforce input formats</li>
+</ul>
+<pre><code>class NameForm extends Component {
+    state = {
+    email: ""
+    }
+    
+    handleChange= event =&gt; {
+    this.setState({email.event.target.value})
+    }
+    render() {
+        return (
+            &lt;form&gt;
+                &lt;input type="text" value={this.state.email} onChange={this.handleChange}/&gt;
+            &lt;/form&gt;
+        )
+    }
+}
+</code></pre>
+
