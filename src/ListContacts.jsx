@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 //stateless function
 class ListContacts extends Component {
   state = {
@@ -29,7 +30,7 @@ class ListContacts extends Component {
   render() {
     //Destructure the variables
     const { query } = this.state;
-    const { contacts, onDeleteContact, onNavigate } = this.props;
+    const { contacts, onDeleteContact } = this.props;
 
     //filter contacts on search functionality.
     const showingContacts =
@@ -53,9 +54,9 @@ class ListContacts extends Component {
             value={query}
             onChange={event => this.updateQuery(event.target.value)}
           />
-          <a href="#create" onClick={onNavigate} className="add-contact">
+          <Link to="/create" className="add-contact">
             Add Contact
-          </a>
+          </Link>
         </div>
         {/* if the returned results are not equal to ALL results, then display the showing-contacts div */}
         {showingContacts.length !== contacts.length && (
