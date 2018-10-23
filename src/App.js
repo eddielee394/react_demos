@@ -12,19 +12,19 @@ class App extends Component {
     };
     
     //update the message state when a new message is sent
-    onMessage = (username,message) => {
+    onMessage = (username, message) => {
         //create the new message object
         const newMessage = {
-            'username': username,
-            'text': message
+            ['username']: username,
+            ['text']: message,
         };
         
         //now we set the state by concatenating the new message to the state.messages object;
-        this.setState(currState => {
-            currState.messages.concat([newMessage])
-        });
+        this.setState(currState => ({
+            messages: currState.messages.concat([newMessage])
+        }));
     };
-
+    
     render() {
         const {messages} = this.state;
         return (

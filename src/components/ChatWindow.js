@@ -1,27 +1,33 @@
 import React, { Component } from "react";
 import * as PropTypes from "prop-types";
-import Message from "./Message";
+import Messages from "./Messages";
 import SendMessage from "./SendMessage";
 
 class ChatWindow extends Component {
-  handleMessage = message => {};
-  
-  render() {
-      const {messages, user} = this.props;
-      return <div className="chat-window">
-          <h2>Super Awesome Chat</h2>
-          <div className="name sender">{user.username}</div>
+    //function that passes the message & username from the Messages component to the parent onMessage event handler
+    onMessage = message => {
+        this.props.onMessage(this.props.user.username,message)
+    };
     
-          <Message messages={messages} user={user}/>
-    
-          <SendMessage disabled={this.props.disabled}/>
-      </div>;
-  }
+    render() {
+        //destructure the props
+        const {messages, user} = this.props;
+        
+        return <div className="chat-window">
+            <h2>Super Awesome Chat</h2>
+            <div className="name sender">{user.username}</div>
+            
+            <Messages messages={messages} user={user}/>
+            
+            <SendMessage onMessage={this.onMessage} />
+        </div>;
+    }
 }
 
 ChatWindow.propTypes = {
-  callbackfn: PropTypes.func,
-  disabled: PropTypes.bool
+    messages: PropTypes.array.isRequired,
+    user: PropTypes.object.isRequired,
+    onMessage: PropTypes.func.isRequired
 };
 
 export default ChatWindow;
