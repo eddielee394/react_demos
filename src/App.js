@@ -1,29 +1,22 @@
 import React, { Component } from "react";
 import ListContacts from "./ListContacts";
+import * as ContactsAPI from "./utils/ContactsAPI";
 
 class App extends Component {
   state = {
-    contacts: [
-      {
-        id: "karen",
-        name: "Karen Isgrigg",
-        handle: "karen_isgrigg",
-        avatarURL: "http://localhost:5001/karen.jpg"
-      },
-      {
-        id: "richard",
-        name: "Richard Kalehoff",
-        handle: "richardkalehoff",
-        avatarURL: "http://localhost:5001/richard.jpg"
-      },
-      {
-        id: "tyler",
-        name: "Tyler McGinnis",
-        handle: "tylermcginnis",
-        avatarURL: "http://localhost:5001/tyler.jpg"
-      }
-    ]
+    contacts: []
   };
+
+  //when the component mounts, we make our ajax call
+  componentDidMount() {
+    //first we call the getAll() method from the ContactsAPI.  We use `.then` to return the promise from the api and we pass the function contacts back
+    ContactsAPI.getAll().then(contacts => {
+      //now we can update the component state with the contacts from the api
+      this.setState(() => ({
+        contacts
+      }));
+    });
+  }
 
   //takes in contact
   removeContact = contact => {
@@ -35,6 +28,9 @@ class App extends Component {
         return c.id !== contact.id;
       })
     }));
+
+    //to remove the contact from the actual database, pass the contact to the api remove() method.
+    ContactsAPI.remove(contact);
   };
 
   render() {
