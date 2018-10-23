@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import ListContacts from "./ListContacts";
 import * as ContactsAPI from "./utils/ContactsAPI";
+import CreateContact from "./CreateContact";
 
 class App extends Component {
   state = {
-    contacts: []
+    contacts: [],
+    screen: "list"
   };
 
   //when the component mounts, we make our ajax call
@@ -33,13 +35,17 @@ class App extends Component {
     ContactsAPI.remove(contact);
   };
 
+  // render the ListContacts component if the state is set to 'list', or render the CreateContact component if the state is set to 'create'
   render() {
     return (
       <div>
-        <ListContacts
-          contacts={this.state.contacts}
-          onDeleteContact={this.removeContact}
-        />
+        {this.state.screen === "list" && (
+          <ListContacts
+            contacts={this.state.contacts}
+            onDeleteContact={this.removeContact}
+          />
+        )}
+        {this.state.screen === "create" && <CreateContact />}
       </div>
     );
   }
