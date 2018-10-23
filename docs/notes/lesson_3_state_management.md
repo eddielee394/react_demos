@@ -214,9 +214,43 @@ When `setState()` is invoked, UI will be updated.  Component will call the `rend
 -   [Using State Correctly](https://facebook.github.io/react/docs/state-and-lifecycle.html)  from the React Docs
 -   [Build with React](http://buildwithreact.com/tutorial/state)'s article on State
 
+# PropTypes
+Package that ensures the correct PropType is being passed to a component.  
+
+# Controlled Components
+Components that render a form where the source of truth for the form state lives inside the component state (instead of the DOM).  
+
+- Used with Forms
+- Form input is updated when the component state is updated. 
+- - Each update to state has an associated handler function
+- - Form elements receive their current value via an attribute
+- Form input values are generally stored in the component's state
+- Event handlers for a controlled element update the components state
+
+**Benefits**
+- instant input validation
+- conditionally disable/enable buttons
+- enforce input formats
+
+```
+class NameForm extends Component {
+    state = {
+    email: ""
+    }
+    
+    handleChange= event => {
+    this.setState({email.event.target.value})
+    }
+    render() {
+        return (
+            <form>
+                <input type="text" value={this.state.email} onChange={this.handleChange}/>
+            </form>
+        )
+    }
+}
+```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY5NTA5NDAzNCwtNTY5Njk0MzMxLC0xMD
-g5NDA0MDMsMjY2OTQyNjg4LC0xOTAwMjU5NzcwLC0zMTQ5Njg5
-NTNdfQ==
+eyJoaXN0b3J5IjpbOTcyMjk4MDU5XX0=
 -->
