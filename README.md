@@ -43,3 +43,9 @@ Course notes are written using standard markdown via [stackedit.io](https://stac
 - **Description** Basic form functionality that adds a new user with unique username validation and dynamic state updating.  Also includes toggle functionality that displays the number of games a user has played when the "Show games played" button is clicked on each user profile.  
 - **Branch:** [lesson_3/exercise_7](https://github.com/eddielee394/udacity_react_excercises/tree/lesson_3/exercise_7)
 ![alt text](_docs/screenshots/screenshot_ex7.gif "lesson_3/exercise_7")
+
+### Exercise 7
+- **Project:** All Together (Chat Application)
+- **Description** Basic chat application between two users.  Sender messages are always displayed in green, while recipient messages are always displayed in blue. Message submit button is disabled if no message is present in the add message field.   
+- **Branch:** [lesson_3/exercise_8](https://github.com/eddielee394/udacity_react_excercises/tree/lesson_3/exercise_8)
+![alt text](_docs/screenshots/screenshot_ex8.gif "lesson_3/exercise_8")
