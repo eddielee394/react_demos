@@ -29,7 +29,7 @@ class ListContacts extends Component {
   render() {
     //Destructure the variables
     const { query } = this.state;
-    const { contacts, onDeleteContact } = this.props;
+    const { contacts, onDeleteContact, onNavigate } = this.props;
 
     //filter contacts on search functionality.
     const showingContacts =
@@ -53,6 +53,9 @@ class ListContacts extends Component {
             value={query}
             onChange={event => this.updateQuery(event.target.value)}
           />
+          <a href="#create" onClick={onNavigate} className="add-contact">
+            Add Contact
+          </a>
         </div>
         {/* if the returned results are not equal to ALL results, then display the showing-contacts div */}
         {showingContacts.length !== contacts.length && (
