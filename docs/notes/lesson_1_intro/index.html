@@ -1,0 +1,38 @@
+---
+
+
+---
+
+<h2 id="composition">Composition</h2>
+<p>Composition occurs when simple functions are combined together to create more complex functions. Think of each function as a single building block that does one thing(DOT). When you combine these simple functions together to form a more complex function, this is composition.</p>
+<p>Key ingredients to composition:</p>
+<ul>
+<li>Simple functions</li>
+<li>Combined to create another function</li>
+</ul>
+<p>DOT Rule:</p>
+<ul>
+<li>
+<p>Do One Thing</p>
+</li>
+<li>
+<p>Single Responsibility principle</p>
+</li>
+</ul>
+<p><a href="https://www.linkedin.com/pulse/compose-me-function-composition-javascript-kevin-greeneh">https://www.linkedin.com/pulse/compose-me-function-composition-javascript-kevin-greeneh</a>ttps://hackernoon.com/javascript-functional-composition-for-every-day-use-22421ef65a10</p>
+<h2 id="declarative-code">Declarative Code</h2>
+<p>Imperative code instructs JavaScript on how it should perform each step. With declarative code, we tell JavaScript what we want to be done, and let JavaScript take care of performing the steps.</p>
+<p>React is declarative because we write the code that we want, and React is in charge of taking our declared code and performing all of the JavaScript/DOM steps to get us to our desired result.</p>
+<p>Example:</p>
+<p><code>&lt;button onClick={activateTeleporter}&gt;Activate Teleporter&lt;/button&gt;</code><br>
+`</p>
+<p><a href="https://tylermcginnis.com/imperative-vs-declarative-programming/">https://tylermcginnis.com/imperative-vs-declarative-programming/</a></p>
+<p><a href="https://stackoverflow.com/questions/33655534/difference-between-declarative-and-imperative-in-react-js">https://stackoverflow.com/questions/33655534/difference-between-declarative-and-imperative-in-react-js</a></p>
+<h2 id="unidirectional-data-flow">Unidirectional Data Flow</h2>
+<p><strong>Data-Binding In Other Frameworks</strong><br>
+Front-end frameworks like  <a href="https://angular.io/">Angular</a>  and  <a href="https://emberjs.com/">Ember</a>  make use of two-way data bindings. In two-way data binding, the data is kept in sync throughout the app no matter where it is updated.</p>
+<p><strong>React’s Data-flow</strong><br>
+Data moves differently with React’s unidirectional data flow. In React, the data flows from the parent component to a child component.</p>
+<p><img src="./images/lesson_1_dataflowchart.jpg" alt="data_flow_graph"></p>
+<p><em>Data flows down from parent component to child component. Data updates are sent to the parent component where the parent performs the actual change.</em></p>
+

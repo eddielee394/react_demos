@@ -41,6 +41,5 @@ Data moves differently with React's unidirectional data flow. In React, the data
 
 _Data flows down from parent component to child component. Data updates are sent to the parent component where the parent performs the actual change._
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNjkxMzI4NTIsLTE0NDM4MTE4NTFdfQ
-==
+eyJoaXN0b3J5IjpbLTIwNjkxMzI4NTJdfQ==
 -->
