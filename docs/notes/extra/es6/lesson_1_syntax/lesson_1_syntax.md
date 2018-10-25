@@ -226,7 +226,30 @@ console.log(sum(1,5,9));
 ```
 
 ### Import/Exports (Modules)
+Inside of a js file we can import content from other files so the parent file is aware of it's dependencies. 
 
+- Default Export
+     * Imports default and _Only_ export of the file name in the receiving file can be changed. 
+     * Always defaults to the class.   Name doesn't matter
+ - Named export
+   * Refers to an explicit name defined in the module. 
+   * Requires braces around component name
+
+```
+//Default export
+../person.js
+const person = foo => console.log(bar)
+
+export default person; 
+
+//Named export
+../utility.js
+export const foo = () => bar; 
+
+../App.js
+import prs from './person.js'
+import { foo } from './utility.js'
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMjY0MzUwNjksLTEwMzUxODUzOV19
+eyJoaXN0b3J5IjpbNTM2ODUxMjMyLC0xMDM1MTg1MzldfQ==
 -->
