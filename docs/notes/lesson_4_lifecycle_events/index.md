@@ -19,6 +19,35 @@ Default methods that are automatically bound to the component instance and React
 - `getDerivedStateFromProps()`
   * invoked after a component is instantiated as well as when it receives brand new props.
 
+### `componentDidMount()` 
+Can be used when using an ajax request.  
+
+```
+componentDidMount() {
+
+//make ajax request using the fetchUser ajax method
+fetchUser().then(
+
+//now we update the state of the user object from our ajax request
+    user => this.setState({
+        name: user.name
+    })
+)
+}
+
+render() {
+    return (
+        <div>
+            <p>name:  {this.stae.name}</p>
+        </div>
+        
+    )
+}
+``` 
+
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMTQ2OTg2MDddfQ==
+eyJoaXN0b3J5IjpbLTE2MDc3NTc2ODIsLTExMTQ2OTg2MDddfQ
+==
 -->
