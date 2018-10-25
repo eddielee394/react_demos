@@ -1,7 +1,5 @@
 
-
-
-> Written with [StackEdit](https://stackedit.io/).# Functions
+# Functions
 
 ## Arrow Functions
 Similar to regular functions except arrow functions are always expressions
@@ -25,10 +23,12 @@ const foo = (bar, baz) => console.log(bar,baz);
 ### Concise and block body syntax
 **Concise body syntax**:
 Generally used with single expression as the function body.  
+- Used when we only need to return a single expression
 - has no curly braces surrounding the function body
 - automatically returns the expression
 
 ```
+//Concise body syntax with implicit return
 const upperizedNames = ['Farrin', 'Kagure', 'Asser'].map(
   name => name.toUpperCase()
 );
@@ -66,7 +66,6 @@ console.log(greet("Joe"));
 ```
 
 
-
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMwNDQ2NjA4MV19
+eyJoaXN0b3J5IjpbMTc0MzEwNTA3MSwxMzA0NDY2MDgxXX0=
 -->
